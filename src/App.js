@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
+import RestaurantItem from './components/RestaurantItem';
+import RestaurantList from './components/RestaurantList';
+import { fetchData } from './actions/RestaurantActions';
 
 class App extends Component {
+
+  componentWillMount() {
+    this.props.fetchData();
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          Test,To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+          {
+            this.props.appData.isFetching && <p>Loading...</p>
+          }
+          {
+            this.props.appData.data.length ?
+            (<RestaurantList list={this.props.appData.data}></RestaurantList>)
+            : <p>{this.props.appData.data.length}</p>
+          }
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps (state) {
+  return {
+    appData: state.appData
+  }
+};
+export default connect(mapStateToProps,{fetchData})(App);
