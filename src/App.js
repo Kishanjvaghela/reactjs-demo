@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+
 import RestaurantItem from './components/RestaurantItem';
 import RestaurantList from './components/RestaurantList';
 import { fetchData } from './actions/RestaurantActions';
@@ -11,19 +11,22 @@ class App extends Component {
     this.props.fetchData();
   }
 
+
   render() {
-    return (
-      <div>
-          {
-            this.props.appData.isFetching && <p>Loading...</p>
-          }
-          {
-            this.props.appData.data.length ?
-            (<RestaurantList list={this.props.appData.data}></RestaurantList>)
-            : <p>{this.props.appData.data.length}</p>
-          }
-      </div>
-    );
+    if(this.props.appData.detail != null){
+      return <p>{this.props.appData.detail.name}</p>
+    }else {
+      if(this.props.appData.isFetching){
+        return <p style={{ backgroundColor:'red'}}>Loading...</p>;
+      } else {
+        if(this.props.appData.data.length === 0 ){
+          return <p style={{ backgroundColor:'red'}}>Empty...</p>;
+        }else {
+          return <RestaurantList
+                    list={this.props.appData.data}></RestaurantList>
+        }
+      }
+    }
   }
 }
 

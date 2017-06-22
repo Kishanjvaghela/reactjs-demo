@@ -1,21 +1,34 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { connect } from 'react-redux';
 import './RestaurantItem.css';
+import { onItemClicked } from '../actions/RestaurantActions';
 
 class RestaurantItem extends Component {
   render() {
+    const {
+      name,
+      backgroundImageURL,
+      category
+    } = this.props.item;
+
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <div className="Root">
+        <a href="#" onClick={this.props.onItemClicked.bind(this,this.props.item)}>
+        <div className="Item">
+          <h3>{name}</h3>
+          <h5>{category}</h5>
         </div>
-        <p className="App-intro">
-          Test,To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        <img src={backgroundImageURL} className="Restaurant-Image" />
+        </a>
+    </div>
     );
   }
 }
 
-export default RestaurantItem;
+// export default RestaurantItem;
+function mapStateToProps (state) {
+  return {
+    appData: state.appData
+  }
+};
+export default connect(mapStateToProps,{onItemClicked})(RestaurantItem);

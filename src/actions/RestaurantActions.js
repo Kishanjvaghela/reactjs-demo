@@ -1,7 +1,8 @@
 import {
   FETCHING_DATA,
   FETCHING_DATA_SUCCESS,
-  FETCHING_DATA_FAILURE
+  FETCHING_DATA_FAILURE,
+  ON_ITEM_CLICKED
 } from '../values/constants';
 import getUsers from '../api'
 
@@ -31,5 +32,12 @@ export function fetchData() {
         dispatch(getDataSuccess(data))
       })
       .catch((err) => console.log('err:',err))
+  }
+}
+
+export function onItemClicked(detail){
+  return {
+    type: ON_ITEM_CLICKED,
+    data: detail
   }
 }
