@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import RestaurantItem from './components/RestaurantItem';
-import RestaurantList from './components/RestaurantList';
 import { fetchData } from './actions/RestaurantActions';
+import RestaurantDetail from './components/RestaurantDetail';
+import RestaurantList from './components/RestaurantList';
+
 
 class App extends Component {
 
@@ -11,22 +12,63 @@ class App extends Component {
     this.props.fetchData();
   }
 
-
-  render() {
-    if(this.props.appData.detail != null){
-      return <p>{this.props.appData.detail.name}</p>
+  onBackButtonClicked() {
+      this.props.appData.detail = null;
+      this.setState({ appData: this.props.appData});
+  }
+  renderBackButton() {
+    const {
+      detail,
+    } = this.props.appData;
+    if(detail != null){
+      return (
+        <a href="#"
+          onClick={this.onBackButtonClicked.bind(this)}>
+          <img
+            src={require('./icons/ic_webBack@2x.png')}
+                 />
+        </a>
+      );
     }else {
-      if(this.props.appData.isFetching){
+      return <div />
+    }
+  }
+
+  renderHeader(){
+    return(
+      <div style={{ backgroundColor: '#43E895'}}>
+        {this.renderBackButton()}
+        <p> Lunch Tyme</p>
+      </div>
+    );
+  }
+  renderContent() {
+    const {
+      detail,
+      isFetching,
+      data,
+    } = this.props.appData;
+    if(detail != null){
+      return <RestaurantDetail
+                item = {detail}/>;
+    }else {
+      if(isFetching){
         return <p style={{ backgroundColor:'red'}}>Loading...</p>;
       } else {
-        if(this.props.appData.data.length === 0 ){
+        if(data.length === 0 ){
           return <p style={{ backgroundColor:'red'}}>Empty...</p>;
         }else {
           return <RestaurantList
-                    list={this.props.appData.data}></RestaurantList>
+                    list={data}></RestaurantList>
         }
       }
     }
+  }
+  render() {
+    return <div>
+      {this.renderHeader()}
+      {this.renderContent()}
+    </div>
   }
 }
 

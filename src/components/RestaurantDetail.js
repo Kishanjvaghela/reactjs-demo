@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
-import './RestaurantItem.css';
+import './RestaurantDetail.css';
 
 class RestaurantDetail extends Component {
   render() {
     const {
       name,
       backgroundImageURL,
-      category
+      category,
+      contact,
+      location
     } = this.props.item;
     return (
-      <div className="Root">
-        <div className="Item">
-          <h3>{name}</h3>
-          <h5>{category}</h5>
+      <div>
+        <img src={backgroundImageURL} className="Map" />
+        <div style={{ backgroundColor:'#34b379'}}>
+            <h3>{name}</h3>
+            <h5>{category}</h5>
         </div>
-        <img src={backgroundImageURL} className="Restaurant-Image" />
+        <ul>
+          {location.formattedAddress.map((address)=>{
+             return <p>{address}</p>;
+            })
+          }
+         </ul>
+
+         <p>{contact.formattedPhone}</p>
+         <p>{"@"+contact.twitter}</p>
     </div>
     );
   }

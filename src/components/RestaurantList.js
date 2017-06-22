@@ -5,12 +5,13 @@ class RestaurantList extends Component {
   render() {
     return (
       <ul className="Root">
-         {this.props.list.map(function(listValue){
+        {this.props.list.map((listValue)=>{
            return (
              <RestaurantItem
                item = {listValue}
              />);
-         })}
+         })
+       }
        </ul>
     );
   }
