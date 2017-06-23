@@ -6,6 +6,7 @@ import RestaurantDetail from './components/RestaurantDetail';
 import RestaurantList from './components/RestaurantList';
 
 
+
 class App extends Component {
 
   componentWillMount() {
@@ -36,7 +37,7 @@ class App extends Component {
 
   renderHeader(){
     return(
-      <div style={{ backgroundColor: '#43E895'}}>
+      <div className="head-title" style={{ backgroundColor: '#43E895',font:'17px'}}>
         {this.renderBackButton()}
         <p> Lunch Tyme</p>
       </div>

@@ -12,15 +12,15 @@ class RestaurantItem extends Component {
     } = this.props.item;
 
     return (
-      <div className="Root">
-        <a href="#" onClick={this.props.onItemClicked.bind(this,this.props.item)}>
+      <li className="Root">
+       <a href="#" className="item-list" onClick={this.props.onItemClicked.bind(this,this.props.item)}>
         <div className="Item">
           <h3>{name}</h3>
           <h5>{category}</h5>
         </div>
         <img src={backgroundImageURL} className="Restaurant-Image" />
         </a>
-    </div>
+    </li>
     );
   }
 }

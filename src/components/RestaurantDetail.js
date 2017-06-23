@@ -11,21 +11,25 @@ class RestaurantDetail extends Component {
       location
     } = this.props.item;
     return (
-      <div>
-        <img src={backgroundImageURL} className="Map" />
-        <div style={{ backgroundColor:'#34b379'}}>
-            <h3>{name}</h3>
-            <h5>{category}</h5>
+      <div className="item-details">
+        <div className="img">
+          <img src={backgroundImageURL} className="Map" />
         </div>
-        <ul>
-          {location.formattedAddress.map((address)=>{
-             return <p>{address}</p>;
-            })
-          }
-         </ul>
+        <div className="item-info">
+          <div className="item-title" style={{ backgroundColor:'#34b379'}}>
+              <h3>{name}</h3>
+              <h5>{category}</h5>
+          </div>
+          <ul className="address">
+            {location.formattedAddress.map((address)=>{
+               return <p>{address}</p>;
+              })
+            }
+           </ul>
 
-         <p>{contact.formattedPhone}</p>
-         <p>{"@"+contact.twitter}</p>
+           <p>{contact.formattedPhone}</p>
+           <p>{"@"+contact.twitter}</p>
+         </div>
     </div>
     );
   }
