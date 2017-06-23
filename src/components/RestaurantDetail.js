@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import './RestaurantDetail.css';
 
 class RestaurantDetail extends Component {
+
+  generateMapUrl() {
+    const {
+      location
+    } = this.props.item;
+    const center = location.lat+","+location.lng;
+    return "https://maps.googleapis.com/maps/api/staticmap?center="
+    +center
+    +"&zoom=13"
+    +"&size=600x300"
+    +"&maptype=roadmap"
+    +"&markers=color:blue%7Clabel:S%7C"+center;
+  }
   render() {
     const {
       name,
@@ -13,7 +26,7 @@ class RestaurantDetail extends Component {
     return (
       <div className="item-details">
         <div className="img">
-          <img src={backgroundImageURL} className="Map" />
+          <img src={this.generateMapUrl()} className="Map" />
         </div>
         <div className="item-info">
           <div className="item-title" style={{ backgroundColor:'#34b379'}}>

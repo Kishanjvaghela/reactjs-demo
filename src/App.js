@@ -53,6 +53,7 @@ class App extends Component {
       return <RestaurantDetail
                 item = {detail}/>;
     }else {
+      console.log(this.props.appData);
       if(isFetching){
         return <p style={{ backgroundColor:'red'}}>Loading...</p>;
       } else {
