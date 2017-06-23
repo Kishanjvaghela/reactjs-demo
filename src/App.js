@@ -27,6 +27,7 @@ class App extends Component {
           onClick={this.onBackButtonClicked.bind(this)}>
           <img
             src={require('./icons/ic_webBack.png')}
+            style={{paddingTop:"10px", height: '48px'}}
              />
         </a>
       );

@@ -19,7 +19,8 @@ right: 10px;
 }
 .ItemBack {
     position: absolute;
-    bottom: 0px;
+    bottom: 15px;
+    padding-right: 20px;
 }
 .Item h3,.Item h5 {    margin: 0px;
     color: #fff;
@@ -32,13 +33,16 @@ right: 10px;
 
 @media only screen and (max-width: 1024px) {
   ul.Root li.Root{ width: 33.33%;}
+  .ItemBack{ bottom: 15px; padding-right: 20px}
 }
 @media only screen and (max-width: 767px) {
   ul.Root li.Root{width: 50%;}
+  .ItemBack{ bottom: 15px; padding-right: 20px}
 }
 @media only screen and (max-width: 480px) {
 
 ul.Root li.Root{ width: 100%; display:flex;}
 ul.Root li.Root .item-list{padding: 0px; display: inline-grid;}
 .Item{bottom: 10px;}
+.ItemBack{ bottom: 0px; padding-right: 0px}
 }
