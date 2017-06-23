@@ -15,12 +15,27 @@ class RestaurantDetail extends Component {
     +"&maptype=roadmap"
     +"&markers=color:blue%7Clabel:S%7C"+center;
   }
+
+  renderContact() {
+    const {
+      contact,
+    } = this.props.item;
+    if(contact === null){
+      return <div/>;
+    }else {
+      return(
+        <div>
+          <p>{contact.formattedPhone}</p>
+          <p>{"@"+contact.twitter}</p>
+        </div>
+      );
+    }
+  }
   render() {
     const {
       name,
       backgroundImageURL,
       category,
-      contact,
       location
     } = this.props.item;
     return (
@@ -39,9 +54,7 @@ class RestaurantDetail extends Component {
               })
             }
            </ul>
-
-           <p>{contact.formattedPhone}</p>
-           <p>{"@"+contact.twitter}</p>
+           {this.renderContact()}
          </div>
     </div>
     );
