@@ -16,8 +16,10 @@ ul.Root li.Root .item-list img{width: 100%;}
 bottom: 20px;
 left: 10px;
 right: 10px;
-
-
+}
+.ItemBack {
+    position: absolute;
+    bottom: 0px;
 }
 .Item h3,.Item h5 {    margin: 0px;
     color: #fff;

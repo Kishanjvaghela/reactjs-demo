@@ -26,8 +26,8 @@ class App extends Component {
         <a href="#"
           onClick={this.onBackButtonClicked.bind(this)}>
           <img
-            src={require('./icons/ic_webBack@2x.png')}
-                 />
+            src={require('./icons/ic_webBack.png')}
+             />
         </a>
       );
     }else {
