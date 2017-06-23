@@ -26,12 +26,26 @@ export function getDataFailure() {
 
 export function fetchData() {
   return (dispatch) => {
-    dispatch(getData())
-    getUsers()
-      .then((data) => {
-        dispatch(getDataSuccess(data))
-      })
-      .catch((err) => console.log('err:',err))
+    dispatch(getData);
+    var url = 'http://sandbox.bottlerocketapps.com/BR_iOS_CodingExam_2015_Server/restaurants.json';
+    fetch(url)
+        .then(response => {
+          console.log("response");
+          return response.json()
+        })
+        .then(json => {
+          console.log(json);
+          dispatch(getDataSuccess(json.restaurants))
+        })
+        .catch((err) => {
+          dispatch(getDataFailure);
+          console.log('err:',err)
+        });
+    // getUsers()
+    //   .then((data) => {
+    //     dispatch(getDataSuccess(data))
+    //   })
+    //   .catch((err) => console.log('err:',err))
   }
 }
 

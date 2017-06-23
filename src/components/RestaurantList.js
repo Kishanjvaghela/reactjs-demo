@@ -8,6 +8,7 @@ class RestaurantList extends Component {
         {this.props.list.map((listValue)=>{
            return (
              <RestaurantItem
+               key = {listValue.name}
                item = {listValue}
              />);
          })
